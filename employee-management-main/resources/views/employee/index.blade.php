@@ -43,21 +43,22 @@
                         </thead>
 
                         <tbody  >
-                            @foreach ($employees as )
+                            @foreach ($employees as $items )
                             <tr>
                                 
-                                {{-- <td class="">{{$items->}}</td>
-                                <td>{{$items}}</td>
-                                <td>{{$items}}</td>
-                                <td>{{$items}}</td>
-                                <td>{{$items}}</td>
-                                <td>{{$items}}</td>
-                                <td>{{$items}}</td> --}}
-                                
-                                
+                                <td class="">{{$items->id}}</td>
+                                <td>{{$items->fname }}</td>
+                                <td>{{$items->lname}}</td>
+                                <td>{{$items->midname}}</td>
+                                <td>{{$items->age}}</td>
+                                <td>{{$items->address}}</td>
+                                <td>{{$items->zip}}</td>
                             </tr>
                             @endforeach
                         </tbody>
+
+                        <span class="badge bg-success"><a href="{{ route('employee.edit',$items->id)}}"></a></span>
+                        <span class="badge bg-success"><a href="{{ route('employee.delete',$items->id)}}"></a></span>
 
                     </table>
                 </div>
