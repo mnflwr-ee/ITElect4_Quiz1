@@ -27,13 +27,12 @@ class employeecontroller extends Controller
         'fname' => 'required|max:255|',
         'lname' => 'required|max:255|',
         'midname' => 'required|max:255|',
-        'age' => 'required|',
+        'age' => 'required|max:255|integer',
         'address' => 'required|max:255|',
-        'zip' => 'required|',
+        'zip' => 'required|max:255|integer',
         
     ]);
-
-    employee::($request->all());
+    employee::create($request->all());
     return view ('employee.create');
     }
 
@@ -45,17 +44,16 @@ class employeecontroller extends Controller
 
     public function update(Request $request, int $id) {
         {
-            $request->validate([
+            $request->([
                 'fname' => 'required|max:255|',
                 'lname' => 'required|max:255|',
                 'midname' => 'required|max:255|',
                 'age' => 'required|',
                 'address' => 'required|max:255|',
                 'zip' => 'required|',
-                
             ]);
         
-            employee::findOrFail($id)->update($request->all());
+            ::findOrFail($id)->update($request->all());
             return redirect ()->back()->with('status','Employee Updated Successfully!');
             }
     }
