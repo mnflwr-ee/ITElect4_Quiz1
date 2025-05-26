@@ -21,18 +21,18 @@ class employeecontroller extends Controller
 
     public function store(Request $request)
     {
-    $request->validate([
-        'fname' => 'required|max:255|',
-        'lname' => 'required|max:255|',
-        'midname' => 'required|max:255|',
-        'age' => 'required|',
-        'address' => 'required|max:255|',
-        'zip' => 'required|',
-        
-    ]);
+        $request->validate([
+            'fname' => 'required|max:255|',
+            'lname' => 'required|max:255|',
+            'midname' => 'required|max:255|',
+            'age' => 'required|',
+            'address' => 'required|max:255|',
+            'zip' => 'required|',
+            
+        ]);
 
-    ::create($request->all());
-    return view ('employee.create');
+        employee::create($request->all());
+        return view ('employee.create');
     }
 
     public function edit(int $id)
@@ -58,7 +58,7 @@ class employeecontroller extends Controller
             }
     }
 
-    public function (int $id){
+    public function destroy(int $id){
         $employees = employee::findOrFail($id);
         $employees->delete();
         return redirect ()->back()->with('status','Employee Deleted');
